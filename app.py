@@ -127,7 +127,7 @@ Search the knowledge base and retrieve relevant information about:
 3) Any relevant research about the navigation gap for people with this type of background.
 Cite your sources."""
 
-                knowledge_response = call_agent(KNOWLEDGE_AGENT, "3", knowledge_prompt)
+                knowledge_response = call_agent(KNOWLEDGE_AGENT, "7", knowledge_prompt)
 
                 st.write("🗺️ Mapping to role frameworks...")
                 time.sleep(0.3)
@@ -142,7 +142,7 @@ Now provide a specific career positioning plan with exactly three sections:
 3. YOUR NEXT STEPS — a concrete 90-day action plan with specific certifications, projects, and milestones"""
 
                 st.write("⚡ Building your action plan...")
-                action_response = call_agent(ACTION_AGENT, "1", action_prompt)
+                action_response = call_agent(ACTION_AGENT, "6", action_prompt)
 
                 status.update(label="Your ClarIQ navigation plan is ready.", state="complete")
 
