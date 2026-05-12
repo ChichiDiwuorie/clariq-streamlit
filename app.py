@@ -67,7 +67,7 @@ def call_agent(agent_name, agent_version, message):
     response = requests.post(url, headers=headers, json=body)
     if not response.ok:
         raise Exception(f"Agent call failed: {response.status_code} — {response.text}")
-     data = response.json()
+    data = response.json()
     for item in data.get("output", []):
         if item.get("type") == "message":
             for content in item.get("content", []):
