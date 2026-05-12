@@ -67,11 +67,13 @@ def call_agent(agent_name, agent_version, message):
     response = requests.post(url, headers=headers, json=body)
     if not response.ok:
         raise Exception(f"Agent call failed: {response.status_code} — {response.text}")
-    data = response.json()
-    return (
-        data.get("output_text")
-        or data.get("output", [{}])[0].get("content", [{}])[0].get("text", str(data))
-    )
+     data = response.json()
+    for item in data.get("output", []):
+        if item.get("type") == "message":
+            for content in item.get("content", []):
+                if content.get("type") == "output_text":
+                    return content.get("text", "")
+    return str(data)
 
 st.markdown("""
 <div class="hero">
