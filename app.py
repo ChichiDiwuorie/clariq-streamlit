@@ -247,8 +247,8 @@ div[data-testid="stExpander"] {
 """, unsafe_allow_html=True)
 
 # ─── Configuration ───────────────────────────────────────────────────────────
-ENDPOINT = st.secrets.get("AZURE_ENDPOINT", "")
-API_KEY = st.secrets.get("AZURE_API_KEY", "")
+ENDPOINT = st.secrets.get("AZURE_ENDPOINT", "https://clariq-s-resource.services.ai.azure.com/api/projects/ClarIQ-S")
+API_KEY = st.secrets.get("AZURE_API_KEY", "FSL6QrO3oF8zxcKkddwThCrXeRUPHGOOq8bV6x6OBzBHrdTY48vXJQQJ99CEACfhMk5XJ3w3AAAAACOGfQfI")
 KNOWLEDGE_AGENT = "ClarIQ-Knowledge-Agent"
 ACTION_AGENT = "ClarIQ-Action-Agent"
 
