@@ -68,12 +68,10 @@ def call_agent(agent_name, agent_version, message):
     if not response.ok:
         raise Exception(f"Agent call failed: {response.status_code} — {response.text}")
     data = response.json()
-    for item in data.get("output", []):
-        if item.get("type") == "message":
-            for content in item.get("content", []):
-                if content.get("type") == "output_text":
-                    return content.get("text", "")
-    return str(data)
+    return (
+        data.get("output_text")
+        or data.get("output", [{}])[0].get("content", [{}])[0].get("text", str(data))
+    )
 
 st.markdown("""
 <div class="hero">
@@ -129,7 +127,7 @@ Search the knowledge base and retrieve relevant information about:
 3) Any relevant research about the navigation gap for people with this type of background.
 Cite your sources."""
 
-                knowledge_response = call_agent(KNOWLEDGE_AGENT, "7", knowledge_prompt)
+                knowledge_response = call_agent(KNOWLEDGE_AGENT, "8", knowledge_prompt)
 
                 st.write("🗺️ Mapping to role frameworks...")
                 time.sleep(0.3)
@@ -144,7 +142,7 @@ Now provide a specific career positioning plan with exactly three sections:
 3. YOUR NEXT STEPS — a concrete 90-day action plan with specific certifications, projects, and milestones"""
 
                 st.write("⚡ Building your action plan...")
-                action_response = call_agent(ACTION_AGENT, "6", action_prompt)
+                action_response = call_agent(ACTION_AGENT, "7", action_prompt)
 
                 status.update(label="Your ClarIQ navigation plan is ready.", state="complete")
 
@@ -173,4 +171,3 @@ st.markdown("""
   Built on <span>Microsoft Foundry</span> · Multi-agent AI · Grounded in enterprise knowledge · <span>ClarIQ 2026</span>
 </div>
 """, unsafe_allow_html=True)
-
