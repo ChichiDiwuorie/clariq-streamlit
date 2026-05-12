@@ -335,7 +335,8 @@ if submit and user_input.strip():
         try:
             client = AIProjectClient(
                 endpoint=ENDPOINT,
-                credential=AzureKeyCredential(API_KEY)
+                credential=AzureKeyCredential(API_KEY),
+                api_version="2025-05-15-preview"
             )
 
             # Step 1 — Knowledge Agent
